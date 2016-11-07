@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="css/index.css" type="text/css" />
+    <link rel="stylesheet" href="font/css/font-awesome.min.css" type="text/css" />
+    <title>测试首页</title>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <a href="#"><img src="images/logo.png" class="bg-img" alt="" /></a>
+        <div class="navbar">
+            <i class="fa fa-navicon fa-2x"></i>
+            <i class="fa fa-times fa-2x"></i>
+            <ul class="nav-list">
+                <li><a href="#" target="_blank">菜单1</a></li>
+                <li><a href="#" target="_blank">菜单2</a></li>
+                <li><a href="#" target="_blank">菜单3</a></li>
+                <li><a href="#" target="_blank">菜单4</a></li>
+                <li><a href="#" target="_blank">菜单5</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <div class="content-left left">
+            <div class="content-box mt20"></div>
+            <div class="content-box mt20"></div>
+        </div>
+        <div class="content-right left">
+            <div class="content-box mt20">
+                <h2 class="bb1 pb10">关于这个页面</h2>
+                <div class="introduce-text">
+                    <p class="pb10">关于这个页面关于这个页面关于这个页面关于</p>
+                    <p>关于这个页面关于这个页面关于这个页面关于这个页面关于这个页面</p>
+                </div>
+                <h2 class="bb1 pb10">联系方式</h2>
+                <div class="social clear">
+                    <ul>
+                        <li><a href="#"><img src="images/qq.jpg" alt="QQ" /></a></li>
+                        <li><a href="#"><img src="images/weixin.jpg" alt="微信" /></a></li>
+                        <li><a href="#"><img src="images/weibo.jpg" alt="微博" /></a></li>
+                        <li><a href="#"><img src="images/github.jpg" alt="GitHub" /></a></li>
+                        <li><a href="#"><img src="images/zhihu.jpg" alt="知乎" /></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-box mt20"></div>
+        </div>
+    </div>
+</div>
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+<script>
+    $(window).ready(function () {
+        var navflag = 0;
+        $(".fa-navicon, .fa-times").on("click",function(){
+            if(!navflag){
+                console.log("打开目录");
+                $(".fa-navicon").css({"display":"none","-webkit-transition":"display 1s"}).next().css({"display":"inline",});
+            }else{
+                console.log("关闭目录");
+                $(".fa-times").css({"display":"none",}).prev().css({"display":"inline",});
+            }
+            $(".nav-list").slideToggle(function(){
+                if(!navflag){
+                    navflag = 1;
+                }else{
+                    navflag = 0;
+                }
+            });
+        })
+    })
+</script>
+</body>
+</html>
