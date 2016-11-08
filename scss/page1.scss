@@ -113,6 +113,7 @@ a{
   margin: auto;
   border: 1px solid seagreen;
   border-radius: 4px;
+  overflow: hidden;
 
   p{
     background-color: darkseagreen;
@@ -177,7 +178,7 @@ a{
 }
 
 .introduce-me li{
-  font-size:26px;
+  font-size:20px;
 
   span{
     padding-left: 1em;
@@ -205,7 +206,7 @@ a{
   }
   .skill-describe{
     position: relative;
-    font-size: 24px;
+    font-size: 20px;
     cursor: pointer;
 
     img{
@@ -230,10 +231,39 @@ a{
     }
   }
 
+  .percent{
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: blueviolet;
+    opacity: 0.7;
+    height: 100%;
+    width: 0;
+    transition: all 1.2s ease;
+  }
+
+  .skill-item{
+    .skill-describe:hover .percent{
+      width: 80%;
+    }
+    &:nth-child(2) .skill-describe .percent{
+      background-color: #2085c5;
+    }
+    &:nth-child(2) .skill-describe:hover .percent{
+      width: 70%;
+    }
+    &:nth-child(3) .skill-describe .percent{
+      background-color: #009a61;
+    }
+    &:nth-child(3) .skill-describe:hover .percent{
+      width: 60%;
+    }
+  }
+
   .skill-details{
     position: relative;
     box-sizing: border-box;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     padding: 10px;
     display:none;
@@ -251,7 +281,7 @@ a{
 
   .experience-item{
     width:27.33%;
-    height: 370px;
+    height: auto;
     float: left;
     box-sizing: border-box;
     border-radius: 4px;
@@ -541,3 +571,45 @@ a{
   transform: rotateX(-90deg) translateZ(100px);
   background-color: burlywood;
 }
+
+/*Mobile*/
+@media screen and (max-width:640px){
+  .section-box ul{
+    padding: 0;
+  }
+  .list221 li{
+    width: 100%;
+    margin: 3% 0;
+  }
+  .skill-zone .skill-describe{
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+  .skill-zone .skill-details{
+    width: 96%;
+  }
+  .skill-zone .skill-describe .skill-open-flag{
+    display: none;
+  }
+  .skill-zone .percent{
+    background-color: transparent !important;
+  }
+  .work-experience{
+    width: 100%;
+
+    .experience-item{
+      height: 200px;
+
+      p{
+        font-size: 12px;
+        text-align: left;
+      }
+    }
+  }
+
+}
+

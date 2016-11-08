@@ -23,7 +23,7 @@
                 me.section = me.element.find(me.selectors.section);
 
                 me.direction = me.setting.direction == "vertical" ? true:false;
-                me.pageCount = me.setting.section.length;
+                me.pageCount = $(me.setting.section).length;
                 me.index = (me.setting.index < me.pageCount && me.setting.index >= 0) ? me.setting.index : 0;/**为什么不是me.setting.index:0*/
 
                 me.page = me.selectors.page;
@@ -33,7 +33,7 @@
                     me._initLayout();
                 }
 
-                if(!me.page){
+                if(me.page){
                     me._initPage();
                 }
 
@@ -57,10 +57,10 @@
                 for(var i=0;i<me.pageCount;i++){
                     pageHtml += "<li></li>";
                 }
-                pageHtml.appendTo(me.sections);/*没用me.element*/
+                pageHtml.appendTo(me.element);/*没用me.element;插入到容器下所以用me.element*/
 
-                var pages = me.sections.find(me.pageClass);/*没用me.element.find(me.selectors.page)*/
-                pages.find("li").eq(me.index).addClass(me.pageActive);
+                var pages = me.element.find(me.selectors.page);/*没用me.element.find(me.selectors.page)*/
+                pages.find("li").eq(me.index).addClass(pageActive);
 
                 if(!me.direction){
                     pages.addClass("horizontal");
@@ -70,8 +70,30 @@
             },
 
             _initEvent: function(){
+                var me = this;
+                me.element.on("mousewheel DOMMouseScroll",function(e){
+                    var e = e || window.event;
+                    var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) ||  // chrome & ie
+                        (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1));              // firefox
+                    if(delta > 0){
+                        /*向上*/
+                        me.prev();
+                    }else if(delta <0){
+                        /*向下*/
+                        me.next();
+                    }
+                });
+            },
 
-            }
+            prev: function () {
+                var me = this;
+            },
+
+            next: function(){
+                var me = this;
+
+            },
+
         }
 
         return Page;
@@ -96,6 +118,6 @@
             active: ".active",
         },
         index: 0,
-        direction: 0
+        direction: "vertical",
     };
 })(jQuery);
